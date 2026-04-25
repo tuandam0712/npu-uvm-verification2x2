@@ -1,0 +1,72 @@
+D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_pkg.sv {0 {vlog -work work -vopt -sv -stats=none D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_pkg.sv
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 18 2018
+-- Compiling package npu_pkg
+-- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+** Note: (vlog-2286) D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_pkg.sv(3): Using implicit +incdir+D:/questa/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+** Error: ** while parsing file included at D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_pkg.sv(7)
+** while parsing file included at npu_sequencer.sv(3)
+** at npu_sequence_item.sv(4): Typedef 'npu_sequence_item' multiply defined.
+** Error: ** while parsing file included at D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_pkg.sv(8)
+** while parsing file included at npu_driver.sv(3)
+** at npu_sequence_item.sv(4): Typedef 'npu_sequence_item' multiply defined.
+** Error: ** while parsing file included at D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_pkg.sv(9)
+** while parsing file included at npu_monitor.sv(3)
+** at npu_sequence_item.sv(4): Typedef 'npu_sequence_item' multiply defined.
+** Error: (vlog-13069) ** while parsing file included at D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_pkg.sv(9)
+** while parsing file included at npu_monitor.sv(4)
+** at npu_if.sv(1): near "npu_if": syntax error, unexpected IDENTIFIER, expecting class.
+
+} {6.0 7.0 9.0 10.0 12.0 13.0 15.0 16.0} {}} D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_base_test.sv {0 {vlog -work work -vopt -sv -stats=none D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_base_test.sv
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 18 2018
+** Note: (vlog-2286) D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_base_test.sv(2): Using implicit +incdir+D:/questa/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+** Error: ** while parsing file included at D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_base_test.sv(3)
+** while parsing file included at npu_env.sv(3)
+** while parsing file included at npu_agent.sv(4)
+** while parsing file included at npu_driver.sv(3)
+** at npu_sequence_item.sv(4): Typedef 'npu_sequence_item' multiply defined.
+** Error: ** while parsing file included at D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_base_test.sv(3)
+** while parsing file included at npu_env.sv(3)
+** while parsing file included at npu_agent.sv(5)
+** while parsing file included at npu_monitor.sv(3)
+** at npu_sequence_item.sv(4): Typedef 'npu_sequence_item' multiply defined.
+** Error: ** while parsing file included at D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_base_test.sv(3)
+** while parsing file included at npu_env.sv(4)
+** while parsing file included at npu_scoreboard.sv(3)
+** at npu_sequence_item.sv(4): Typedef 'npu_sequence_item' multiply defined.
+** Error: ** while parsing file included at D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_base_test.sv(4)
+** while parsing file included at npu_sequence.sv(3)
+** at npu_sequence_item.sv(4): Typedef 'npu_sequence_item' multiply defined.
+
+} {4.0 5.0 9.0 10.0 14.0 15.0 18.0 19.0} {}} D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_if.sv {1 {vlog -work work -vopt -sv -stats=none D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_if.sv
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 18 2018
+-- Compiling interface npu_if
+
+Top level modules:
+	--none--
+
+} {} {}} D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_agent.sv {0 {vlog -work work -vopt -sv -stats=none D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_agent.sv
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 18 2018
+** Note: (vlog-2286) D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_agent.sv(2): Using implicit +incdir+D:/questa/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+** Error: ** while parsing file included at D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_agent.sv(4)
+** while parsing file included at npu_driver.sv(3)
+** at npu_sequence_item.sv(4): Typedef 'npu_sequence_item' multiply defined.
+** Error: ** while parsing file included at D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_agent.sv(5)
+** while parsing file included at npu_monitor.sv(3)
+** at npu_sequence_item.sv(4): Typedef 'npu_sequence_item' multiply defined.
+
+} {4.0 5.0 7.0 8.0} {}} D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_env.sv {0 {vlog -work work -vopt -sv -stats=none D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_env.sv
+QuestaSim-64 vlog 10.7c Compiler 2018.08 Aug 18 2018
+** Note: (vlog-2286) D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_env.sv(2): Using implicit +incdir+D:/questa/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+** Error: ** while parsing file included at D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_env.sv(3)
+** while parsing file included at npu_agent.sv(4)
+** while parsing file included at npu_driver.sv(3)
+** at npu_sequence_item.sv(4): Typedef 'npu_sequence_item' multiply defined.
+** Error: ** while parsing file included at D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_env.sv(3)
+** while parsing file included at npu_agent.sv(5)
+** while parsing file included at npu_monitor.sv(3)
+** at npu_sequence_item.sv(4): Typedef 'npu_sequence_item' multiply defined.
+** Error: ** while parsing file included at D:/DoAn/DoAn_NPU8x8/npu_uvm/uvm/npu_env.sv(4)
+** while parsing file included at npu_scoreboard.sv(3)
+** at npu_sequence_item.sv(4): Typedef 'npu_sequence_item' multiply defined.
+
+} {4.0 5.0 8.0 9.0 12.0 13.0} {}}
