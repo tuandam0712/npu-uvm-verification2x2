@@ -7,9 +7,17 @@ class npu_sequence_item extends uvm_sequence_item;
     bit signed [15:0] C_expected [2][2];
     bit signed [15:0] C_actual [2][2];
 
-    constraint reasonalble_range {
-        foreach(A[i,j]) A[i][j] inside {[-15:15]};
-        foreach(B[i,j]) B[i][j] inside {[-15:15]};
+    constraint reasonable_range {
+        foreach(A[i,j]) A[i][j] dist {
+            [-128:-1] :/ 40,
+            0        :/ 20,
+            [1:127]  :/ 40
+        };
+        foreach(B[i,j]) B[i][j] dist {
+            [-128:-1] :/ 40,
+            0        :/ 20,
+            [1:127]  :/ 40
+        };
     }
     function new(string name = "npu_sequence_item");
         super.new(name);

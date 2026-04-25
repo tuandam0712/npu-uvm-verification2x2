@@ -37,7 +37,7 @@ covergroup npu_input_cg with function sample (npu_sequence_item item);
         bins max_pos = {127};
         bins max_neg = {-128};
     }
-    cx_ab0001: cross cp_a00, cpb01;
+    cx_ab0001: cross cp_a00, cp_b01;
     cp_b11: coverpoint item.B[1][1] {
         bins zero = {0};
         bins pos = {[1:126]};
@@ -83,7 +83,6 @@ class npu_monitor extends uvm_monitor;
     endfunction
     task run_phase(uvm_phase phase);
         npu_sequence_item item;
-        npu_sequence_item item_clone;
         forever begin
             @(posedge vif.clk iff vif.start);
             @(posedge vif.clk);  // Thêm 1 cycle để inputs ổn định
@@ -117,78 +116,11 @@ class npu_monitor extends uvm_monitor;
             wait(vif.done == 0);
             
             // Gửi sang scoreboard
-            $cast(item_clone, item.clone());
             sample_coverage(item);
-            analysis_port.write(item_clone);
+            analysis_port.write(item);
         end
     endtask
     function void sample_coverage(npu_sequence_item item);
-        cg.sample(item);
+        cg.sample(item); 
     endfunction
 endclass
-covergroup npu_input_cg with function sample (npu_sequence_item item);
-    cp_a00: coverpoint item.A[0][0] {
-        bins zero = {0};
-        bins pos = {[1:126]};
-        bins neg = {[-127:-1]};
-        bins max_pos = {127};
-        bins max_neg = {-128};
-    }
-    cp_b00: coverpoint item.B[0][0] {
-        bins zero = {0};
-        bins pos = {[1:126]};
-        bins neg = {[-127:-1]};
-        bins max_pos = {127};
-        bins max_neg = {-128};
-    }
-    cx_ab: cross cp_a00, cp_b00;
-    cp_a01: coverpoint item.A[0][1] {
-        bins zero = {0};
-        bins pos = {[1:126]};
-        bins neg = {[-127:-1]};
-        bins max_pos = {127};
-        bins max_neg = {-128};
-    }
-    cp_b10: coverpoint item.B[1][0] {
-        bins zero = {0};
-        bins pos = {[1:126]};
-        bins neg = {[-127:-1]};
-        bins max_pos = {127};
-        bins max_neg = {-128};
-    }
-    cx_ab0110: cross cp_a01, cp_b10;
-    cp_b01: coverpoint item.B[0][1] {
-        bins zero = {0};
-        bins pos = {[1:126]};
-        bins neg = {[-127:-1]};
-        bins max_pos = {127};
-        bins max_neg = {-128};
-    }
-    cx_ab0001: cross cp_a00, cpb01;
-    cp_b11: coverpoint item.B[1][1] {
-        bins zero = {0};
-        bins pos = {[1:126]};
-        bins neg = {[-127:-1]};
-        bins max_pos = {127};
-        bins max_neg = {-128};
-    }
-    cx_ab0111: cross cp_a01, cp_b11;
-    cp_a10: coverpoint item.A[1][0] {
-        bins zero = {0};
-        bins pos = {[1:126]};
-        bins neg = {[-127:-1]};
-        bins max_pos = {127};
-        bins max_neg = {-128};
-    }
-    cx_ab1000: cross cp_a10, cp_b00;
-    cp_a11: coverpoint item.A[1][1] {
-        bins zero = {0};
-        bins pos = {[1:126]};
-        bins neg = {[-127:-1]};
-        bins max_pos = {127};
-        bins max_neg = {-128};
-    }
-    cx_ab1110: cross cp_a11, cp_b10;
-    cx_ab1001: cross cp_a10, cp_b01;
-    cx_ab1111: cross cp_a11, cp_b11;
-endgroup
