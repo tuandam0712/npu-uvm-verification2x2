@@ -33,30 +33,30 @@ module npu_top #(
         .c00(c00), .c01(c01), .c10(c10), .c11(c11)
     );
 
-    // property p_shift_right;
-    //     @(posedge clk) disable iff (!rst_n) u_ctrl.state inside{1,2} |-> (u_arr.pe01.a_in == $past(u_arr.pe00.a_out));
-    // endproperty
+    property p_shift_right;
+        @(posedge clk) disable iff (!rst_n) u_ctrl.state inside{1,2} |-> (u_arr.pe01.a_in == $past(u_arr.pe00.a_out));
+    endproperty
 
-    // A_SHIFT_RIGHT: assert property(p_shift_right)
-    //     else $error("[TOP BUG] data not shift right");
+    A_SHIFT_RIGHT: assert property(p_shift_right)
+        else $error("[TOP BUG] data not shift right");
 
     
-    // property p_shift_down;
-    //     @(posedge clk) disable iff (!rst_n) u_ctrl.state inside{1,2} |-> (u_arr.pe10.b_in == $past(u_arr.pe00.b_out));
-    // endproperty
+    property p_shift_down;
+        @(posedge clk) disable iff (!rst_n) u_ctrl.state inside{1,2} |-> (u_arr.pe10.b_in == $past(u_arr.pe00.b_out));
+    endproperty
 
-    // A_SHIFT_DOWN: assert property(p_shift_down)
-    //     else $error("[TOP BUG] data not shift down");
+    A_SHIFT_DOWN: assert property(p_shift_down)
+        else $error("[TOP BUG] data not shift down");
 
-    // assert property(
-    //     @(posedge clk) disable iff (!rst_n) !ctrl_valid_in |->($stable(u_arr.pe00.a_out) && $stable(u_arr.pe00.b_out))
-    // );
+    assert property(
+        @(posedge clk) disable iff (!rst_n) !ctrl_valid_in |->($stable(u_arr.pe00.a_out) && $stable(u_arr.pe00.b_out))
+    );
 
-    // sequence two_valid;
-    //     ctrl_valid_in ##1 ctrl_valid_in ##1 !ctrl_valid_in;
-    // endsequence
+    sequence two_valid;
+        ctrl_valid_in ##1 ctrl_valid_in ##1 !ctrl_valid_in;
+    endsequence
 
-    // assert property(
-    //     @(posedge clk) disable iff (!rst_n) start |-> two_valid
-    // );
+    assert property(
+        @(posedge clk) disable iff (!rst_n) start |-> two_valid
+    );
 endmodule

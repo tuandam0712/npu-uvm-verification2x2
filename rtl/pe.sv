@@ -21,25 +21,19 @@ module pe #(parameter width = 8) (
             end
         end
     end
-    // property p_pe_reset;
-    //     @(posedge clk or negedge rst_n) !rst_n |-> acc == 0;
-    // endproperty
-    // A_PE_RESET: assert property(p_pe_reset)
-    // else $error("[PE BUG] reset but acc != 0");
+    assert property(
+        @(posedge clk) !rst_n |-> acc == 0
+    ) else $error("[PE BUG] reset but acc != 0");//reset
 
-    // property p_pe_stable;
-    //     @(posedge clk) disable iff(!rst_n) !valid |-> $stable(acc);
-    // endproperty
-    // A_PE_STABLE: assert property(p_pe_stable)
-    // else $error("[PE BUG] !valid but acc != acc past");
+    assert property(
+        @(posedge clk) disable iff(!rst_n) !valid |-> $stable(acc)
+    )else $error("[PE BUG] !valid but acc != acc past");//stable
 
-    // property p_pe_math;
-    //     @(posedge clk) disable iff(!rst_n) valid |=> (acc == $past(acc) + ($past(a_in) * $past(b_in)));
-    // endproperty
-    // A_PE_MATH: assert property(p_pe_math)
-    // else $error("[PE BUG] wrong math");
+    assert property(
+        @(posedge clk) disable iff(!rst_n) valid |=> (acc == $past(acc) + ($past(a_in) * $past(b_in)))
+    )else $error("[PE BUG] wrong math");//math
 
-    // assert property(
-    //     @(posedge clk) disable iff (!rst_n) (a_out == $past(a_in) && b_out == $past(b_in))
-    // ) else $error("[PE BUG] shift wrong");
+    assert property(
+        @(posedge clk) disable iff (!rst_n) (a_out == $past(a_in) && b_out == $past(b_in))
+    ) else $error("[PE BUG] shift wrong");
 endmodule

@@ -94,4 +94,22 @@ module systolic_arr_2x2 #(
         .b_out(b_wire[2][1]),
         .acc(c11)
     );
+    assert property(
+        @(posedge clk) disable iff (!rst_n) valid_01 |-> (pe01.a_in == $past(pe00.a_out))
+    )else $error("[SARR BUG] shift wrong pe00pe01");
+    assert property(
+        @(posedge clk) disable iff (!rst_n) valid_10 |-> (pe10.b_in == $past(pe00.b_out))
+    ) else $error("[SARR BUG] shift wrong pe00pe10");
+    assert property(
+    @(posedge clk) disable iff (!rst_n) valid_11 |-> (pe11.b_in == $past(pe01.b_out))
+    ) else $error("[SARR BUG] shift wrong pe01pe11");
+    assert property(
+    @(posedge clk) disable iff (!rst_n) valid_11 |-> (pe11.a_in == $past(pe10.a_out))
+    ) else $error("[SARR BUG] shift wrong pe10pe11");
+    assert property(
+        @(posedge clk) disable iff (!rst_n) valid_11 |-> ($past(valid_01) && $past(valid_10))
+    ) else $error("[SARR BUG] valid_11 triggered wrong");
+    assert property(
+        @(posedge clk) disable iff (!rst_n) !valid_in |-> ($stable(c00) && $stable(c11))
+    ) else $error("[SARR BUG] output unstable when !valid");
 endmodule

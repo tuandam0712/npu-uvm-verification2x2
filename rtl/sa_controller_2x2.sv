@@ -42,18 +42,27 @@ module sa_controller_2x2 (
             end
             DONE : begin
                 done = 1;
-                // Không clear ở đây nữa
             end
             default: ;
         endcase
     end
     assert property(
-        @(posedge clk) valid_in |-> (state == K0 || state == K1)
+        @(posedge clk) disable iff (!rstn) valid_in |-> (state == K0 || state == K1)
     );
     assert property (
-    @(posedge clk) done |-> state == DONE
+        @(posedge clk) disable iff (!rstn) done |-> state == DONE
     );
-    assert property (
-        @(posedge clk) state == K0 |-> ##1 state == K1
-    );
+    assert property(
+        @(posedge clk) disable iff (!rst_n) state == DONE |=> state == IDLE
+    )else $error("[CTRL BUG] DONE not back to IDLE");
+    assert property(
+        @(posedge clk) disable iff (!rstn) state == IDLE |-> !start
+    )else $error("[CTRL BUG] start during busy");
+    assert property(
+        @(posedge clk) disable iff (!rst_n)
+        (state==IDLE) && start |-> (state==K0) ##1 (state == K1) ##1 (state == FLUSH1) ##1 (state == FLUSH2) ##1 (state == DONE)
+    )else $error("[CTRL BUG] FSM sequence wrong");
+    assert property(
+        @(posedge clk) disable iff (!rst_n) $rose(done) |=> !done
+    )else $error("[CTRL BUG] done not 1 cycle");
 endmodule
